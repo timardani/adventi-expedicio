@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<title>Adventi expedíció – ösvény</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#07100A}
+a{color:#F2C46B}a:hover{color:#FFD995}
+.glowring{animation:glowring 2.6s ease-in-out infinite}
+@keyframes glowring{50%{box-shadow:0 0 0 4px #F2C46B,0 0 70px 22px rgba(255,190,90,.75)}}
+@media (prefers-reduced-motion: reduce){.glowring{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 2760px; overflow: hidden; background: #07100A; color: #F4EFE2; font-family: 'Work Sans', system-ui, sans-serif">
+<img src="/_blob/31a48402260827f08a56e9d7d68f565d" alt="" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 2760px">
+
+<header style="position: absolute; z-index: 4; left: 20px; right: 20px; top: 18px; display: flex; justify-content: space-between; align-items: center">
+<span style="font-family: 'Saira Stencil One', sans-serif; font-size: 24px; letter-spacing: .04em; text-transform: uppercase">Moai Jungle</span>
+<span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; padding: 7px 12px; border-radius: 99px; background: rgba(4,9,6,.6); border: 1px solid rgba(244,239,226,.25)">dec. 7.</span>
+</header>
+
+<div style="position: absolute; z-index: 4; left: 24px; right: 24px; top: 92px; text-shadow: 0 1px 12px rgba(0,0,0,.85)">
+<div style="font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #F2C46B">Adventi expedíció</div>
+<h1 style="margin: 8px 0 0; font-family: 'Saira Stencil One', sans-serif; font-weight: 400; font-size: 38px; line-height: 1; text-transform: uppercase">Az ösvény</h1>
+<p style="margin: 10px 0 0; font-size: 15px; line-height: 1.5; color: #E4E8DF; max-width: 300px">Minden reggel egy újabb szakaszt vághatsz ki a dzsungelből. Eddig 7 szakasz a 24-ből.</p>
+</div>
+
+<sc-for list="{{done}}" as="s" hint-placeholder-count="5">
+<div style="position: absolute; z-index: 2; left: {{s.left}}; top: {{s.top}}; width: 76px; height: 76px">
+<div style="width: 76px; height: 76px; border-radius: 50%; overflow: hidden; border: 3px solid #EDE3C8; box-shadow: 0 6px 18px rgba(0,0,0,.6); box-sizing: border-box; background: #3A2A12">
+<img src="{{s.img}}" alt="{{s.alt}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+</div>
+<span style="position: absolute; left: -6px; top: -6px; min-width: 28px; height: 28px; border-radius: 14px; background: #F2C46B; color: #1E1405; font-family: 'Saira Stencil One', sans-serif; font-size: 16px; display: flex; align-items: center; justify-content: center">{{s.day}}</span>
+<div style="position: absolute; top: 18px; {{s.labelSide}}: 90px; width: 150px; text-align: {{s.align}}; text-shadow: 0 1px 10px rgba(0,0,0,.95)">
+<div style="font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #CFE0C8">{{s.day}}. szakasz</div>
+<div style="font-size: 15px; font-weight: 600; line-height: 1.25; margin-top: 2px">{{s.title}}</div>
+</div>
+</div>
+</sc-for>
+
+<div style="position: absolute; z-index: 2; left: 224px; top: 682px; width: 76px; height: 76px">
+<a href="Gift.dc.html" aria-label="4. szakasz, kimaradt, még kinyitható" style="position: relative; display: block; width: 76px; height: 76px; border-radius: 50%; overflow: hidden; border: 3px dashed #EDE3C8; box-sizing: border-box">
+<img src="/_blob/7320f0f1180d41028cc07a16e2d0f779" alt="" style="position: absolute; inset: -20%; width: 140%; height: 140%; object-fit: cover; filter: blur(7px) brightness(.8)">
+<span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Saira Stencil One', sans-serif; font-size: 30px; color: #FFFFFF">4</span>
+</a>
+<div style="position: absolute; top: 14px; right: 90px; width: 150px; text-align: right; text-shadow: 0 1px 10px rgba(0,0,0,.95)">
+<div style="font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #F2C46B">Kimaradt</div>
+<div style="font-size: 15px; font-weight: 600; line-height: 1.25; margin-top: 2px">Még visszamehetsz érte</div>
+</div>
+</div>
+
+<div style="position: absolute; z-index: 2; left: 105px; top: 1050px; width: 180px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<div class="glowring" style="position: relative; width: 180px; height: 180px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 3px #F2C46B, 0 0 50px 14px rgba(255,190,90,.55)">
+<img src="/_blob/3cc95cd274a97bf86f3bb11640441f66" alt="" style="position: absolute; inset: -15%; width: 130%; height: 130%; object-fit: cover; filter: blur(10px) brightness(1.05)">
+<div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, rgba(255,230,170,.25), rgba(10,18,12,.45))"></div>
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
+<span style="font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #FFE7B5">Ma</span>
+<span style="font-family: 'Saira Stencil One', sans-serif; font-size: 84px; line-height: .9; color: #FFF6E2; text-shadow: 0 4px 20px rgba(80,40,0,.6)">7</span>
+</div>
+</div>
+<a href="Machete.dc.html" style="height: 50px; padding: 0 22px; border-radius: 14px; background: #F2C46B; color: #1E1405; text-decoration: none; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,.5)">
+<svg width="20" height="20" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M10 50 L44 16 C50 10 58 8 60 10 C58 14 54 22 48 28 L18 58 Z" fill="#1E1405"></path><path d="M14 54 L18 58 L8 62 C4 63 2 61 3 57 L6 47 L10 50 Z" fill="#6B4A2A"></path></svg>
+Vágj utat a mai ajándékig</a>
+</div>
+
+<sc-for list="{{over}}" as="o" hint-placeholder-count="17">
+<div role="img" aria-label="{{o.day}}. szakasz, még benőtte a dzsungel" style="position: absolute; z-index: {{o.z}}; left: {{o.left}}; top: {{o.top}}; width: 44px; height: 44px; border-radius: 50%; background: #2B2A20; border: 2px solid {{o.ring}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-family: 'Saira Stencil One', sans-serif; font-size: 18px; color: rgba(237,227,200,.75)">{{o.day}}</div>
+</sc-for>
+
+<img src="/_blob/221ff89bd2c4f0555e2691df81387424" alt="" aria-hidden="true" style="position: absolute; z-index: 3; left: 0; top: 0; width: 390px; height: 2760px; pointer-events: none">
+
+<div style="position: absolute; z-index: 4; left: 24px; right: 24px; top: 1330px; text-align: center; text-shadow: 0 1px 12px rgba(0,0,0,.95)">
+<div style="font-family: 'Saira Stencil One', sans-serif; font-size: 22px; text-transform: uppercase">Innen még sűrű a dzsungel</div>
+<p style="margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: #DCE3D6">A következő szakasz holnap reggel nyílik. Szólunk e-mailben, amikor élesítheted a machetét.</p>
+</div>
+
+<div style="position: absolute; z-index: 4; left: 24px; right: 24px; top: 2690px; display: flex; justify-content: center; gap: 18px; font-size: 13px"><a href="#" style="color: #CFD6CB">Adatkezelés</a><a href="#" style="color: #CFD6CB">Játékszabályzat</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var B = '/_blob/';
+    var stops = [[112,300],[272,440],[124,580],[262,720],[118,860],[256,1000]];
+    var info = {
+      1: ['3b5d230b81fe681f49599c9b1520dc80', 'Szívlevél ajándékba'],
+      2: ['06bbbdcb3eb76a54b4c5dfcb6d79541f', 'Ingyenes szállítás'],
+      3: ['6eac03aa630e93bbf6878ccdbb7cf1ad', '1+1 Calathea'],
+      5: ['cafbf0acc37ef1579935ddcad634c864', 'Futónövény-nap'],
+      6: ['1054a39f800b8bdf2487cdbcaa49b5fc', 'Mikulás meglepetés']
+    };
+    var done = [];
+    [1, 2, 3, 5, 6].forEach(function (d) {
+      var p = stops[d - 1], left = p[0] < 195;
+      done.push({ day: d, img: B + info[d][0], title: info[d][1], alt: d + '. szakasz: ' + info[d][1],
+        left: (p[0] - 38) + 'px', top: (p[1] - 38) + 'px',
+        labelSide: left ? 'left' : 'right', align: left ? 'left' : 'right' });
+    });
+    var ox = [96,290,150,250,110,300,180,270,90,230,140,300,110,260,170,300,120];
+    var over = ox.map(function (x, i) { return { day: i + 8, left: (x - 22) + 'px', top: (1330 + i * 76 + 120 - 22) + 'px', z: i === 0 ? 4 : 2, ring: i === 0 ? '#F2C46B' : 'rgba(237,227,200,.35)' }; });
+    return { done: done, over: over };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<title>Adventi expedíció – belépés</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#07100A}
+a{color:#F2C46B}a:hover{color:#FFD995}
+.half{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.25,.1,.15,1),opacity .8s ease .25s,filter .8s ease;will-change:transform}
+.slash{position:absolute;left:-15%;width:130%;height:3px;transform-origin:50% 50%;background:linear-gradient(90deg,rgba(255,255,255,0),#FFFFFF 35%,#FFF6D8 50%,#FFFFFF 65%,rgba(255,255,255,0));box-shadow:0 0 22px 5px rgba(255,248,215,.75);animation:slash .5s ease-out forwards;pointer-events:none}
+@keyframes slash{0%{clip-path:inset(0 100% 0 0);opacity:1}55%{clip-path:inset(0 0 0 0);opacity:1}100%{clip-path:inset(0 0 0 0);opacity:0}}
+.shakeA{animation:shakeA .38s ease-out}.shakeB{animation:shakeB .38s ease-out}
+@keyframes shakeA{20%{transform:translate(-6px,3px)}45%{transform:translate(5px,-3px)}70%{transform:translate(-2px,1px)}100%{transform:none}}
+@keyframes shakeB{20%{transform:translate(6px,-3px)}45%{transform:translate(-5px,3px)}70%{transform:translate(2px,-1px)}100%{transform:none}}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.08);opacity:.75}}
+.rise{animation:rise 1s cubic-bezier(.2,.8,.2,1) both .35s}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+@media (prefers-reduced-motion: reduce){.half{transition-duration:.01s}.slash,.shakeA,.shakeB,.pulse,.rise{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #07100A; color: #F4EFE2; font-family: 'Work Sans', system-ui, sans-serif">
+
+<img src="/_blob/450f0a0ad32981cea6c5f0ee89240994" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<section class="rise" aria-label="Tisztás – mai ajándék" style="position: absolute; left: 24px; right: 24px; bottom: 30px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px">
+<span style="font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: #FFE3A8; text-shadow: 0 1px 8px rgba(0,0,0,.6)">7. nap · tisztás</span>
+<span style="font-family: 'Saira Stencil One', sans-serif; font-weight: 400; font-size: 96px; line-height: .8; color: #FFF4D9; text-shadow: 0 6px 30px rgba(120,60,0,.55)">7</span>
+<h1 style="margin: 6px 0 0; font-family: 'Saira Stencil One', sans-serif; font-weight: 400; font-size: 40px; line-height: 1; letter-spacing: .02em; text-transform: uppercase; color: #FFFFFF; text-shadow: 0 2px 16px rgba(0,0,0,.55)">Átvágtad magad!</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #F7EEDC; max-width: 280px; text-shadow: 0 1px 10px rgba(0,0,0,.8)">A tisztáson ott vár a mai zsákmány. Holnap újabb szakaszt vágunk az ösvényen.</p>
+<a href="Gift.dc.html" style="margin-top: 18px; width: 100%; height: 56px; border-radius: 14px; background: #F2C46B; color: #1E1405; text-decoration: none; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px">Megnézem a mai ajándékot</a>
+<a href="Trail.dc.html" style="height: 48px; display: flex; align-items: center; font-size: 15px; font-weight: 500; color: #FFFFFF; text-shadow: 0 1px 8px rgba(0,0,0,.8)">Az expedíció ösvénye →</a>
+</section>
+</sc-if>
+
+<div class="{{shakeClass}}" style="position: absolute; inset: 0">
+<sc-for list="{{walls}}" as="w" hint-placeholder-count="4">
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none">
+<img class="half" src="{{w.src}}" alt="" style="clip-path: {{w.clipA}}; transform: {{w.tA}}; opacity: {{w.op}}">
+<img class="half" src="{{w.src}}" alt="" style="clip-path: {{w.clipB}}; transform: {{w.tB}}; opacity: {{w.op}}">
+<sc-if value="{{w.slashing}}" hint-placeholder-val="{{false}}">
+<div class="slash" style="top: {{w.slashTop}}; transform: rotate({{w.slashAngle}})"></div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 130px; background: linear-gradient(180deg, rgba(4,9,6,.85), rgba(4,9,6,0)); pointer-events: none"></div>
+<header style="position: absolute; left: 20px; right: 20px; top: 18px; display: flex; justify-content: space-between; align-items: center; pointer-events: none">
+<span style="font-family: 'Saira Stencil One', sans-serif; font-weight: 400; font-size: 24px; letter-spacing: .04em; text-transform: uppercase">Moai Jungle</span>
+<span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; padding: 7px 12px; border-radius: 99px; background: rgba(4,9,6,.6); border: 1px solid rgba(244,239,226,.25)">Adventi expedíció</span>
+</header>
+
+<sc-if value="{{notDone}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{cut}}" aria-label="Vágj a machetével" style="position: absolute; inset: 0; z-index: 5; border: 0; padding: 0; margin: 0; background: transparent; cursor: crosshair"></button>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 6; padding: 70px 24px 34px; background: linear-gradient(0deg, rgba(4,9,6,.92) 30%, rgba(4,9,6,0)); display: flex; flex-direction: column; align-items: center; gap: 14px; pointer-events: none">
+<svg class="pulse" width="56" height="56" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+<path d="M10 50 L44 16 C50 10 58 8 60 10 C58 14 54 22 48 28 L18 58 Z" fill="#E9E4D6" stroke="#0C130E" stroke-width="2" stroke-linejoin="round"></path>
+<path d="M14 54 L18 58 L8 62 C4 63 2 61 3 57 L6 47 L10 50 Z" fill="#6B4A2A" stroke="#0C130E" stroke-width="2" stroke-linejoin="round"></path>
+<path d="M22 46 L46 22" stroke="#9AA39A" stroke-width="1.5"></path>
+</svg>
+<div style="font-family: 'Saira Stencil One', sans-serif; font-weight: 400; font-size: 30px; letter-spacing: .03em; text-transform: uppercase; text-align: center; line-height: 1">{{hint}}</div>
+<div style="font-size: 14px; color: #CFD6CB; text-align: center">Koppints a képernyőre, és vágj utat a mai ajándékig.</div>
+<div style="display: flex; gap: 8px">
+<sc-for list="{{dots}}" as="dot" hint-placeholder-count="4"><span style="width: 28px; height: 5px; border-radius: 4px; background: {{dot.bg}}"></span></sc-for>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cuts: 0 };
+  }
+  renderVals() {
+    var B = '/_blob/';
+    var srcs = [B + 'f9cef6af2e8ea014bc43118f49aec125', B + 'a803113b66a5101cdfb8f3ef0f97e36b', B + 'e391c3cc19ab589a80de4e860e016d2c', B + 'e91f1a0bcc9f4853d0ff9369c159528e'];
+    // slash line per wall: y% at left edge, y% at right edge
+    var lines = [[58, 40], [36, 62], [66, 30], [30, 58]];
+    var cuts = this.state.cuts, total = 4;
+    var walls = srcs.map(function (src, i) {
+      var l = lines[i], yl = l[0], yr = l[1];
+      var order = total - i;            // front wall (i=3) is cut first
+      var isCut = cuts >= order;
+      var dx = 0, ang = Math.atan2((yr - yl) * 8.44, 390) * 180 / Math.PI;
+      var nx = Math.sin(ang * Math.PI / 180) * 70, ny = -Math.cos(ang * Math.PI / 180) * 70;
+      return {
+        src: src,
+        clipA: 'polygon(0 0, 100% 0, 100% ' + yr + '%, 0 ' + yl + '%)',
+        clipB: 'polygon(0 ' + yl + '%, 100% ' + yr + '%, 100% 100%, 0 100%)',
+        tA: isCut ? 'translate(' + (nx * 4) + 'px,' + (ny * 6) + 'px) rotate(' + (-6 - i) + 'deg) scale(1.15)' : 'none',
+        tB: isCut ? 'translate(' + (-nx * 4) + 'px,' + (-ny * 6) + 'px) rotate(' + (5 + i) + 'deg) scale(1.15)' : 'none',
+        op: isCut ? 0 : 1,
+        slashing: cuts === order,
+        slashTop: ((yl + yr) / 2) + '%',
+        slashAngle: ang + 'deg'
+      };
+    });
+    var left = total - cuts;
+    var hints = ['Vágj utat!', 'Még három csapás', 'Csak így tovább!', 'Már látszik a fény…'];
+    var dots = [];
+    for (var d = 0; d < total; d++) dots.push({ bg: d < cuts ? '#F2C46B' : 'rgba(244,239,226,.25)' });
+    return {
+      walls: walls,
+      done: cuts >= total,
+      notDone: cuts < total,
+      hint: hints[Math.min(cuts, total - 1)],
+      dots: dots,
+      shakeClass: cuts === 0 ? '' : (cuts % 2 ? 'shakeA' : 'shakeB'),
+      cut: () => this.setState({ cuts: Math.min(total, this.state.cuts + 1) })
+    };
+  }
+}
+</script>
+</body>
+</html>

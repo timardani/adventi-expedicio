@@ -1,0 +1,19 @@
+{
+  "name": "adventi-expedicio-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "test": "node --test \"test/*.test.js\""
+  },
+  "devDependencies": {
+    "vite": "8.3.4"
+  },
+  "dependencies": {
+    "@fontsource/saira-stencil-one": "5.3.0",
+    "@fontsource/work-sans": "5.3.0"
+  }
+}
