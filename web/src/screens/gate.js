@@ -24,7 +24,7 @@ export function mountGate(root, ctx, { onDone }) {
       h('span', {}, 'Elfogadom a ', h('a', { href: '#', target: '_blank' }, 'játékszabályzatot'),
         ' és az ', h('a', { href: '#', target: '_blank' }, 'adatkezelési tájékoztatót'), '.')),
     h('label', { class: 'gate-check' }, news,
-      h('span', {}, `Kérem a ${brand} hírlevelét is (újdonságok, ajánlatok). Nem kötelező.`)),
+      h('span', {}, 'Kérem a hírlevelet is.')),
     error,
     submit);
 
@@ -55,9 +55,7 @@ export function mountGate(root, ctx, { onDone }) {
     h('div', { class: 'gate-body' },
       h('div', { class: 'kicker gold' }, 'December 1–24.'),
       h('h1', {}, 'Indul az adventi expedíció'),
-      h('p', { class: 'gate-lead' },
-        '24 napon át minden reggel kinő egy új ösvényszakasz. Vágj utat a machetével, és a tisztáson ott vár a napi zsákmány.'),
-      h('p', { class: 'gate-lead small' }, 'Add meg az e-mail címed: szólunk, amikor élesítheted a machetét.'),
+      h('p', { class: 'gate-lead' }, '24 nap, 24 ajándék. Vágj utat a machetével!'),
       form));
   root.replaceChildren(screen);
   return () => {};

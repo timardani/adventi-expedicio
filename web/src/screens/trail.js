@@ -6,6 +6,7 @@
 
 import { h, header, asset, decDate, MACHETE_SMALL_SVG } from '../ui.js';
 import { loadImage } from '../engine/preload.js';
+import { msUntilBudapestMidnight, formatCountdown } from '../params.js';
 
 const PAGE_W = 390;
 
@@ -33,7 +34,9 @@ export async function mountTrail(root, ctx) {
     h('div', { class: 'trail-intro' },
       h('div', { class: 'kicker gold' }, 'Adventi expedíció'),
       h('h1', {}, 'Az ösvény'),
-      h('p', {}, `Minden reggel egy újabb szakaszt vághatsz ki a dzsungelből. Eddig ${day} szakasz a 24-ből.`)),
+      h('div', { class: 'trail-progress', role: 'img', 'aria-label': `${day} szakasz a 24-ből` },
+        h('span', { class: 'tp-num' }, h('strong', {}, String(day)), ' / 24'),
+        h('span', { class: 'tp-track' }, h('span', { class: 'tp-bar', style: { width: (day / 24) * 100 + '%' } })))),
   );
 
   const byDay = new Map(trail.days.map((d) => [d.day, d]));
@@ -53,7 +56,7 @@ export async function mountTrail(root, ctx) {
             h('span', { class: 'st-num' }, String(d.day))),
           h('div', { class: 'st-label ' + (leftSide ? 'right' : 'left'), 'aria-hidden': 'true' },
             h('div', { class: 'st-kicker muted' }, 'Kimaradt'),
-            h('div', { class: 'st-title' }, 'Ezt a szakaszt már benőtte a dzsungel'))),
+            h('div', { class: 'st-title' }, 'Benőtte a dzsungel'))),
       );
     } else {
       list.append(
@@ -99,16 +102,22 @@ export async function mountTrail(root, ctx) {
 
   page.append(h('img', { class: 'trail-front', src: asset(`trail/front-${nn}.webp`), alt: '', 'aria-hidden': 'true', style: { height: H + 'px' } }));
 
+  // visszaszámláló a következő szakaszig (budapesti éjfél)
+  const countdown = h('strong', { class: 'countdown' });
+  const renderCountdown = () => { countdown.textContent = formatCountdown(msUntilBudapestMidnight()); };
+  renderCountdown();
+  const timer = day < 24 ? setInterval(renderCountdown, 20000) : 0;
+
   page.append(
     day < 24
       ? h('div', { class: 'dense-text', style: { top: layout.denseTextTop + 'px' } },
         h('div', { class: 'dense-title' }, 'Innen még sűrű a dzsungel'),
-        h('p', {}, 'A következő szakasz holnap reggel nyílik. Szólunk e-mailben, amikor élesítheted a machetét.'))
+        h('p', {}, 'Új szakasz ', countdown, ' múlva.'))
       : h('div', { class: 'dense-text', style: { top: layout.denseTextTop + 'px' } },
         h('div', { class: 'dense-title' }, openedToday ? 'Célba értél!' : 'Az utolsó szakasz'),
         h('p', {}, openedToday
-          ? 'Mind a 24 napot végigjártad. Köszönjük, hogy velünk tartottál az expedíción.'
-          : 'Még egy vágás, és célba érsz. Ott vár a nagy zsákmány.')),
+          ? 'Köszönjük, hogy velünk tartottál!'
+          : 'Még egy vágás, és célba érsz.')),
   );
   page.append(
     h('footer', { class: 'trail-footer', style: { top: H - 70 + 'px' } },
@@ -131,5 +140,8 @@ export async function mountTrail(root, ctx) {
   // a mai nap legyen látható; az első napokon a lap teteje (fejléc, cím) is
   scroller.scrollTop = ctx.scrollTop ?? (ty < 650 ? 0 : (ty - 260) * s);
 
-  return () => ro.disconnect();
+  return () => {
+    ro.disconnect();
+    clearInterval(timer);
+  };
 }

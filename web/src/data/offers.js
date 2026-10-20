@@ -31,13 +31,18 @@ const LIST = [
   ['Napforduló: fényt a dzsungelbe', 'Scindapsus Mayari', 'NAPFORDULO', 'Ma a növénylámpák 20%-kal olcsóbbak: a leghosszabb éjszakán is jut fény.'],
   ['Expressz szállítás karácsonyig', 'Epipremnum Lemon Top', 'EXPRESSZ', 'Ingyenes expressz szállítás, hogy a fa alá is odaérjen.'],
   ['Utolsó előtti csapás', 'Calathea White Star', 'CSAPAS23', '−23% bármelyik egy Calatheára.'],
-  ['A nagy zsákmány', 'Monstera White Monster', 'ZSAKMANY24', 'Célba értél! A mai rendelésed mellé meglepetésnövény jár, és −24% mindenre.'],
+  ['−24% mindenre', 'Monstera White Monster', 'ZSAKMANY24', 'Egész januárban beválthatod: az ünnepek után is jár a dzsungel.'],
 ];
+
+// A kupon érvényessége: alapból a nap végéig (a felületen visszaszámlálóval),
+// a 24. napé egész januárban (Dani ötlete, 2026-10-20).
+const VALID_UNTIL = { 24: 'január 31-ig érvényes' };
 
 export const OFFERS = LIST.map(([title, plant, code, text], i) => {
   const nn = String(i + 1).padStart(2, '0');
   return {
     day: i + 1, title, plant, code, text, url: SHOP,
+    validUntil: VALID_UNTIL[i + 1] || null,
     image: `days/station-${nn}.webp`,
     clearing: `days/clearing-${nn}.webp`,
   };

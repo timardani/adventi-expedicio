@@ -55,7 +55,7 @@ export function mountIntro(root, ctx) {
   const hint = h('div', { class: 'hint' },
     h('span', { class: 'machete pulse', html: MACHETE_SVG }),
     hintText,
-    h('div', { class: 'hint-sub' }, 'Húzd végig az ujjad a leveleken, vagy koppints, és vágj utat a mai ajándékig.'),
+    h('div', { class: 'hint-sub' }, 'Húzd végig az ujjad, vagy koppints.'),
     dots);
 
   const surface = h('div', {

@@ -4,7 +4,7 @@
 //   ?falak=4        falak száma (3–5). Alapból minden betöltésnél véletlenszerű 3 és 5 között.
 //   ?kepernyo=osveny | ajandek   közvetlen indítás (ajandek = a már átvágott tisztás a mai ajándékkal)
 //   ?kapu=0 | 1     e-mail kapu: 0 = kihagyás, 1 = mindenképp megjelenik (a megadott címet elfelejti)
-//   ?demo=0         a demó-napválasztó elrejtése
+//   ?panel=0        a napválasztó elrejtése (a régi ?demo=0 is működik)
 
 export const DAYS = 24;
 
@@ -19,6 +19,24 @@ export function budapestDate(now = new Date()) {
 export function defaultDay(now = new Date()) {
   const { m, d } = budapestDate(now);
   return m === 12 && d >= 1 && d <= DAYS ? d : 7;
+}
+
+/** Hány ezredmásodperc van hátra a budapesti éjfélig (napváltás, kuponlejárat). */
+export function msUntilBudapestMidnight(now = new Date()) {
+  const s = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Budapest', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23',
+  }).format(now);
+  const [hh, mm, ss] = s.split(':').map(Number);
+  const left = 86400 - (hh * 3600 + mm * 60 + ss);
+  return left * 1000 - now.getMilliseconds();
+}
+
+/** Rövid visszaszámláló: „11 ó 23 p”, egy óra alatt „23 p”, egy perc alatt „1 p”. */
+export function formatCountdown(ms) {
+  const min = Math.max(1, Math.ceil(ms / 60000));
+  const hh = Math.floor(min / 60);
+  const mm = min % 60;
+  return hh > 0 ? `${hh} ó ${mm} p` : `${mm} p`;
 }
 
 function toDay(v) {
@@ -56,7 +74,7 @@ export function parseParams(search, now = new Date(), rnd = Math.random) {
     walls,
     screen,
     gate: kapu === '0' ? 'skip' : kapu === '1' ? 'force' : 'auto',
-    demo: q.get('demo') !== '0',
+    panel: q.get('panel') !== '0' && q.get('demo') !== '0',
   };
 }
 

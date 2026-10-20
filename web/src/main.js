@@ -75,8 +75,8 @@ audio.onChange(renderMute);
 renderMute();
 phone.append(muteBtn);
 
-// ——— Demó-napválasztó ———
-if (params.demo) {
+// ——— Napválasztó a bemutatóhoz (?panel=0 elrejti) ———
+if (params.panel) {
   const panel = h('div', { class: 'demo-panel', hidden: true },
     h('div', { class: 'demo-days' },
       Array.from({ length: DAYS }, (_, i) =>
@@ -86,7 +86,7 @@ if (params.demo) {
       onclick: () => { api.forgetPlayer(); location.reload(); },
     }, 'E-mail kapu újra'),
     h('div', { class: 'demo-hint' }, 'Paraméterek: ?nap=N · ?kihagyott=4,9 · ?falak=3…5 · ?kepernyo=osveny|ajandek · ?kapu=0|1'));
-  const toggle = h('button', { type: 'button', class: 'demo-toggle', 'aria-expanded': 'false' }, `Demó · ${params.day}. nap`);
+  const toggle = h('button', { type: 'button', class: 'demo-toggle', 'aria-expanded': 'false' }, `${params.day}. nap ▾`);
   toggle.addEventListener('click', () => {
     panel.hidden = !panel.hidden;
     toggle.setAttribute('aria-expanded', String(!panel.hidden));

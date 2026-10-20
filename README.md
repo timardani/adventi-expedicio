@@ -61,7 +61,7 @@ közepe és mérete a fotón (`fokusz: [x, y, méret]`, 720×720 px). Utána `da
 | `?falak=3` … `5` | falak száma. Alapból minden betöltésnél véletlenszerű 3 és 5 között. |
 | `?kepernyo=osveny` / `ajandek` | közvetlen indítás az ösvényről, vagy a már átvágott tisztásról |
 | `?kapu=0` / `1` | e-mail kapu kihagyása / újra megjelenítése (a demópanelen is: „E-mail kapu újra”) |
-| `?demo=0` | a jobb felső „Demó · N. nap” napválasztó elrejtése |
+| `?panel=0` | a jobb felső „N. nap ▾” napválasztó elrejtése (a régi `?demo=0` is működik) |
 
 ## Mit tud
 
