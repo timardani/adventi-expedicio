@@ -1,0 +1,36 @@
+/* Karácsonyi díszítés – csak az #app.xmas alatt hat (lásd xmas.js). */
+
+/* fényfüzér a lap tetején; a fejléc kicsit lejjebb kerül, hogy ne takarják az izzók */
+.xmas-lights {
+  position: absolute; z-index: 8; left: 0; right: 0; top: 0; height: 46px; pointer-events: none;
+}
+.xmas-lights svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.xl-wire { fill: none; stroke: #24321c; stroke-width: 1.4; }
+.xl-glow { opacity: 0.4; filter: blur(4px); }
+.xl-bulb { animation: xl-twinkle 2.4s ease-in-out infinite; }
+@keyframes xl-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+.xmas .top-bar { top: 40px; }
+.xmas .mute-btn { top: 35px; }
+.xmas .demo { top: 84px; }
+.xmas .trail-header { top: 40px; }
+.xmas .trail-intro { top: 104px; }
+.xmas .top-fade { height: 160px; }
+/* az űrlap és a gombok szövegére ne szálljon por */
+.xmas .gate-body { z-index: 6; }
+
+/* szállingózó aranypor: a falak és a képek fölött, a szövegek alatt */
+.xmas-sky { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+
+/* piros masni az ajándékon, a felső arany vonal közepén */
+.xmas .gift { position: relative; margin-top: 18px; padding-top: 24px; border-top-color: rgba(214, 64, 56, 0.75); }
+.xmas .gift::before {
+  content: ''; position: absolute; left: 50%; top: -17px; width: 54px; height: 32px; transform: translateX(-50%);
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 32'%3E%3Cpath d='M27 16 C18 2 4 2 5 12 C6 21 18 20 27 16 Z' fill='%23d6403a' stroke='%237a1c18' stroke-width='1.2'/%3E%3Cpath d='M27 16 C36 2 50 2 49 12 C48 21 36 20 27 16 Z' fill='%23d6403a' stroke='%237a1c18' stroke-width='1.2'/%3E%3Cpath d='M25 17 L17 31 L21 29 L23 32 L27 18 Z' fill='%23b8322d'/%3E%3Cpath d='M29 17 L37 31 L33 29 L31 32 L27 18 Z' fill='%23b8322d'/%3E%3Ccircle cx='27' cy='16' r='4.2' fill='%23e8524a' stroke='%237a1c18' stroke-width='1.2'/%3E%3C/svg%3E");
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+}
+.xmas .code-box { border-color: rgba(242, 196, 107, 0.8); box-shadow: inset 0 0 0 1px rgba(214, 64, 56, 0.25); }
+
+@media (prefers-reduced-motion: reduce) {
+  .xl-bulb { animation: none; }
+}

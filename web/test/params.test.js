@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseParams, msUntilBudapestMidnight, formatCountdown } from '../src/params.js';
+import { parseParams, msUntilBudapestMidnight, formatCountdown, XMAS_DEFAULT } from '../src/params.js';
 
 test('éjfélig hátralévő idő Budapesten (téli idő, UTC+1)', () => {
   // 2026-12-07 11:30:00 UTC = 12:30 budapesti idő → 11,5 óra van hátra
@@ -25,4 +25,10 @@ test('napválasztó: ?panel=0 és a régi ?demo=0 is elrejti', () => {
   assert.equal(parseParams('?nap=7').panel, true);
   assert.equal(parseParams('?nap=7&panel=0').panel, false);
   assert.equal(parseParams('?nap=7&demo=0').panel, false);
+});
+
+test('karácsonyi díszítés: alapérték, ?karacsony=0 és =1', () => {
+  assert.equal(parseParams('?nap=7').xmas, XMAS_DEFAULT);
+  assert.equal(parseParams('?karacsony=0').xmas, false);
+  assert.equal(parseParams('?karacsony=1').xmas, true);
 });

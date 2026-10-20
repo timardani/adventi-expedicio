@@ -5,6 +5,10 @@
 //   ?kepernyo=osveny | ajandek   közvetlen indítás (ajandek = a már átvágott tisztás a mai ajándékkal)
 //   ?kapu=0 | 1     e-mail kapu: 0 = kihagyás, 1 = mindenképp megjelenik (a megadott címet elfelejti)
 //   ?panel=0        a napválasztó elrejtése (a régi ?demo=0 is működik)
+//   ?karacsony=0    a karácsonyi díszítés (fényfüzér, aranypor, masni, csengő) kikapcsolása
+
+// A karácsonyi díszítés alapértéke. false = mindenhol ki (a ?karacsony=1 ekkor is bekapcsolja).
+export const XMAS_DEFAULT = true;
 
 export const DAYS = 24;
 
@@ -75,6 +79,7 @@ export function parseParams(search, now = new Date(), rnd = Math.random) {
     screen,
     gate: kapu === '0' ? 'skip' : kapu === '1' ? 'force' : 'auto',
     panel: q.get('panel') !== '0' && q.get('demo') !== '0',
+    xmas: q.has('karacsony') ? q.get('karacsony') !== '0' : XMAS_DEFAULT,
   };
 }
 

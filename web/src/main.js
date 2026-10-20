@@ -14,6 +14,7 @@ import { h, asset } from './ui.js';
 import { mountIntro } from './screens/intro.js';
 import { mountTrail } from './screens/trail.js';
 import { mountGate } from './screens/gate.js';
+import { mountXmas } from './xmas/xmas.js'; // karácsony
 
 const BRAND = 'Moai Jungle';
 const WALL_SETS = 6;
@@ -34,6 +35,8 @@ const device = {
 const audio = createAudio();
 const parallax = createParallax();
 const api = createMockApi(params);
+// karácsony: díszítés (?karacsony=0 kikapcsolja, alapérték: params.js → XMAS_DEFAULT)
+const xmas = params.xmas ? mountXmas(phone, { reduced: device.reduced }) : null;
 
 // naponta más fal: 6 készlet forog, minden második körben tükrözve → 12 változat
 const wallSet = ((params.day - 1) % WALL_SETS) + 1;
@@ -52,6 +55,7 @@ const ctx = {
   mirror,
   wallCount,
   sprites: [],
+  xmas, // karácsony
   onTrail: () => show('osveny'),
   onCut: () => show('belepo'),
   onClearing: () => show('belepo', { cleared: true }),

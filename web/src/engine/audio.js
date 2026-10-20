@@ -218,6 +218,41 @@ export function createAudio({ volume = 0.9 } = {}) {
     scheduleBird();
   }
 
+  /** karácsony: csilingelés (csengő-hármashangzat + szánkócsengő-zörej). Csak a díszítés bekapcsolásakor szól. */
+  function jingle() {
+    if (playSample('jingle') || !ensure()) return;
+    const t = ctx.currentTime + 0.05;
+    [1318.5, 1568, 1975.5, 2637].forEach((f, i) => {
+      const t0 = t + i * 0.09;
+      [[1, 0.09], [2.76, 0.035], [5.4, 0.015]].forEach(([ratio, peak]) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.value = f * ratio;
+        g.gain.setValueAtTime(0.0001, t0);
+        g.gain.linearRampToValueAtTime(peak, t0 + 0.004);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.3 / ratio + 0.2);
+        o.connect(g).connect(master);
+        o.start(t0);
+        o.stop(t0 + 1.6);
+      });
+    });
+    for (let i = 0; i < 7; i++) {
+      const t0 = t + i * rnd(0.05, 0.08);
+      const s = noiseSrc();
+      const hp = ctx.createBiquadFilter();
+      hp.type = 'highpass';
+      hp.frequency.value = 6500;
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.linearRampToValueAtTime(0.09 * (1 - i / 8), t0 + 0.005);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.07);
+      s.connect(hp).connect(g).connect(master);
+      s.start(t0, rnd(0, 2.5));
+      s.stop(t0 + 0.09);
+    }
+  }
+
   function scheduleBird() {
     clearTimeout(birdTimer);
     birdTimer = setTimeout(() => {
@@ -269,6 +304,7 @@ export function createAudio({ volume = 0.9 } = {}) {
     swoosh,
     rustle,
     reward,
+    jingle,
     startAmbience,
     get muted() {
       return muted;

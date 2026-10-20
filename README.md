@@ -62,6 +62,7 @@ közepe és mérete a fotón (`fokusz: [x, y, méret]`, 720×720 px). Utána `da
 | `?kepernyo=osveny` / `ajandek` | közvetlen indítás az ösvényről, vagy a már átvágott tisztásról |
 | `?kapu=0` / `1` | e-mail kapu kihagyása / újra megjelenítése (a demópanelen is: „E-mail kapu újra”) |
 | `?panel=0` | a jobb felső „N. nap ▾” napválasztó elrejtése (a régi `?demo=0` is működik) |
+| `?karacsony=0` / `1` | karácsonyi díszítés ki/be (fényfüzér, aranypor, masni, csengő, 24. napon konfetti). Alapérték: `web/src/params.js` → `XMAS_DEFAULT`. Minden kódja a `web/src/xmas/` mappában. |
 
 ## Mit tud
 

@@ -290,6 +290,11 @@ export function mountIntro(root, ctx) {
       );
     }
     audio.reward();
+    // karácsony: csengő + fénykitörés (24. napon konfetti)
+    if (ctx.xmas) {
+      setTimeout(() => audio.jingle(), 260);
+      ctx.xmas.celebrate(day);
+    }
     await api.openDay(day);
     api.track('open', { day });
     // a vágófelület eltűnt: a fókusz a tisztás szövegére kerül (billentyűzet, képernyőolvasó)
